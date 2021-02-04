@@ -21,3 +21,12 @@ def test_colorbar_raises_value_error():
     with pytest.raises(AttributeError, match="requires a matplotlib"):
         ep.colorbar(list())
     plt.close()
+
+
+def test_colorbar_returns_cax(basic_geometry_gdf):
+    """Test that colorbar works with geodataframes when cax is returned."""
+    f, ax = plt.subplots(figsize=(5, 5))
+    cb_ax = ep.colorbar(ax, return_cax=True)
+    im = basic_geometry_gdf.plot(ax=ax, legend=True, cax=cb_ax)
+    assert ax.get_position().height == im.axes.get_position().height
+    plt.close(f)

@@ -16,7 +16,7 @@ from skimage import exposure
 import earthpy.spatial as es
 
 
-def colorbar(mapobj, size="3%", pad=0.09):
+def colorbar(mapobj, size="3%", pad=0.09, return_cax=False):
     """Adjust colorbar height to match the matplotlib axis height.
 
     NOTE: This function requires matplotlib v 3.0.1 or greater or v 2.9 or
@@ -31,6 +31,9 @@ def colorbar(mapobj, size="3%", pad=0.09):
         The percent width of the colorbar relative to the plot.
     pad : int (default = 0.09)
         The space between the plot and the color bar.
+    return_cax : bool (default = False)
+        Boolean to return the cax created before it is applied to the axis.
+        Can be used to help adjust colorbars on non-array plots.
 
     Returns
     -------
@@ -70,7 +73,10 @@ def colorbar(mapobj, size="3%", pad=0.09):
     fig = ax.figure
     divider = make_axes_locatable(ax)
     cax = divider.append_axes("right", size=size, pad=pad)
-    return fig.colorbar(mapobj, cax=cax)
+    if return_cax:
+        return cax
+    else:
+        return fig.colorbar(mapobj, cax=cax)
 
 
 def _plot_image(
