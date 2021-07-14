@@ -4,7 +4,7 @@ codecov==2.1.11
 importlib-metadata==4.6.0
 pytest==6.2.4
 pytest-vcr==1.0.2
-sphinx==4.0.2
+sphinx==4.1.1
 pytest-cov==2.12.1
 sphinx-autobuild==2021.3.14
 sphinx_gallery==0.9.0
